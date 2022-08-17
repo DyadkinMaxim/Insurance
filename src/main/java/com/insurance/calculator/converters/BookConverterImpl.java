@@ -1,8 +1,8 @@
 package com.insurance.calculator.converters;
 
+import com.insurance.calculator.models.Book;
 import com.insurance.calculator.dto.BookDTO;
 import com.insurance.calculator.models.Author;
-import com.insurance.calculator.models.Book;
 import com.insurance.calculator.models.Comment;
 import com.insurance.calculator.models.Style;
 import org.springframework.stereotype.Service;

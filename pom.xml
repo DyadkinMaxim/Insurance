@@ -97,7 +97,6 @@
 			<artifactId>spring-context-support</artifactId>
 		</dependency>
 
-		<!--Тестирование-->
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-api</artifactId>

@@ -1,4 +1,4 @@
-package com.insurance.calculator.page;
+package com.insurance.calculator;
 
 import com.insurance.calculator.MVCservice.ClientService;
 import org.junit.Test;

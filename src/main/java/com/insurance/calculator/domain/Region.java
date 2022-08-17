@@ -15,8 +15,8 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "post_codes")
-public class PostCodes {
+@Table(name = "region")
+public class Region {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,9 +31,12 @@ public class PostCodes {
     @Column(name = "county", nullable = false)
     private String county;
 
+    @Column(name = "city", nullable = false)
+    private String city;
+
     @Column(name = "location", nullable = false)
     private String location;
 
-    @Column(name = "value", nullable = false)
-    private Double value;
+    @Column(name = "factor_value", nullable = false)
+    private Double factorValue;
 }

@@ -56,6 +56,7 @@
             })
             $('div').append('<button id = "submit" type="submit" onClick="getSave()">Add book</button> <br/>');
             $('div').append('<button id = "submit" type="submit" onClick="getComment()">Add comment</button>');
+            $('div').append('<button id = "submit" type="submit" onClick="getTypeClass()">Add typeClass</button>');
             comments(books);
         })
     }
@@ -253,6 +254,51 @@
             type : "POST",
             contentType : 'application/json',
             data : JSON.stringify(commentDTO),
+            success : function() {
+                document.body.innerHTML = '<div></div>'
+                list()
+            }
+        })
+    }
+
+    function getTypeClass() {
+        document.body.innerHTML = '<div></div>'
+        $('div').append(`
+                <a onclick = "list()" href = ''>Back to insurance</a>
+                <h1>Add new TypeClass:</h1>
+                   <label for="className">Class name:</label>
+                    <input id="className" type="text"/>
+                <div>
+                    <label for="factor">Class type factor:</label>
+                    <input id="factor" type="text"/>
+                </div>
+            <div class="submit">
+            <button id = "submit" type="submit" onClick="postTypeClass()">Save</button>
+             </div>
+                `)
+        $.get('/api/books').done(function (books) {
+            let i;
+            for (i = 0; i < books.length; i++) {
+                $('#bookId').append("<option>" + books[i].id + "</option>");
+            }
+        })
+    }
+
+    function postTypeClass() {
+        let id = -1;
+        let className = $('#className').val();
+        let factor = $('#factor').val();
+        let typeClassDTO = {};
+        typeClassDTO.id = id;
+        typeClassDTO.className = className;
+        typeClassDTO.factor = factor;
+        console.log(className);
+        console.log(factor);
+        $.ajax({
+            url : '/management/typeClass/newTypeClass',
+            type : "POST",
+            contentType : 'application/json',
+            data : JSON.stringify(typeClassDTO),
             success : function() {
                 document.body.innerHTML = '<div></div>'
                 list()

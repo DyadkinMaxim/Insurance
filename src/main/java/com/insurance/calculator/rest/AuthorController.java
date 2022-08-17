@@ -1,8 +1,8 @@
 package com.insurance.calculator.rest;
 
+import com.insurance.calculator.repositoriesSpringDataJPA.AuthorRepository;
 import com.insurance.calculator.converters.AuthorConverterImpl;
 import com.insurance.calculator.dto.AuthorDTO;
-import com.insurance.calculator.repositoriesSpringDataJPA.AuthorRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 

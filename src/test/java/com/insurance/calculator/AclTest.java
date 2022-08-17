@@ -1,4 +1,4 @@
-package com.insurance.calculator.page;
+package com.insurance.calculator;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

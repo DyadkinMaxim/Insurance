@@ -1,4 +1,4 @@
-package com.insurance.calculator.page;
+package com.insurance.calculator;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

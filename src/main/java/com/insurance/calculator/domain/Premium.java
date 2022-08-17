@@ -22,8 +22,8 @@ public class Premium {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "user", nullable = false)
-    private String user;
+    @Column(name = "user_name", nullable = false)
+    private String userName;
 
     @Column(name = "premium", nullable = false)
     private Double premium;

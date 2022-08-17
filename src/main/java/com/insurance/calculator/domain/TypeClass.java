@@ -23,9 +23,9 @@ public class TypeClass {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "className", nullable = false)
+    @Column(name = "class_name", nullable = false)
     private String className;
 
-    @Column(name = "value", nullable = false)
-    private Double value;
+    @Column(name = "factor_value", nullable = false)
+    private Double factorValue;
 }
