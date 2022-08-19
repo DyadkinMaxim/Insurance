@@ -22,9 +22,6 @@ public class Region {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "post_code", nullable = false)
-    private long postCode;
-
     @Column(name = "federal_state", nullable = false)
     private String federalState;
 
@@ -33,6 +30,9 @@ public class Region {
 
     @Column(name = "city", nullable = false)
     private String city;
+
+    @Column(name = "post_code", nullable = false)
+    private Long postCode;
 
     @Column(name = "location", nullable = false)
     private String location;

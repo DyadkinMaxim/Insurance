@@ -2,7 +2,6 @@ package com.insurance.calculator.controllers;
 
 import com.insurance.calculator.dao.TypeClassRepository;
 import com.insurance.calculator.domain.TypeClass;
-import com.insurance.calculator.rest.NotFoundException;
 import com.insurance.calculator.service.TypeClassService;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -40,17 +39,17 @@ public class TypeClassControllerImpl implements TypeClassController {
 
     @PutMapping("/management/typeClass/{id}")
     @ExceptionHandler(NotFoundException.class)
-    public void updateTypeClass(
+    public TypeClass updateTypeClass(
             @RequestBody TypeClass typeClass
     ) {
-        typeClassService.update(typeClass);
+        return typeClassService.update(typeClass);
     }
 
 
     @PostMapping("/management/typeClass/newTypeClass")
-    public void saveTypeClass(
+    public TypeClass saveTypeClass(
             @RequestBody TypeClass newTypeClass
     ) {
-        typeClassService.save(newTypeClass);
+        return typeClassRepository.save(newTypeClass);
     }
 }

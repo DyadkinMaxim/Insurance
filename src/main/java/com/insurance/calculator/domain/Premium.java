@@ -25,15 +25,15 @@ public class Premium {
     @Column(name = "user_name", nullable = false)
     private String userName;
 
-    @Column(name = "premium", nullable = false)
-    private Double premium;
+    @Column(name = "premium_value", nullable = false)
+    private Double premiumValue;
 
-    @Column(name = "mileage", nullable = false)
-    private Double mileage;
+    @Column(name = "mileage_factor", nullable = false)
+    private Double mileageFactor;
 
-    @Column(name = "type_class_factor", nullable = false)
-    private Double typeClassFactor;
+    @Column(name = "type_class_factor_id", nullable = false)
+    private long typeClassFactorId;
 
-    @Column(name = "regional_factor", nullable = false)
-    private Double regionalFactor;
+    @Column(name = "regional_factor_id", nullable = false)
+    private long regionalFactorId;
 }

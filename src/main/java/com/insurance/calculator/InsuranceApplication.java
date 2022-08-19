@@ -5,9 +5,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
 @SpringBootApplication
-public class BooksApplication {
+public class InsuranceApplication {
 
 	public static void main(String[] args) {
-		ApplicationContext context = SpringApplication.run(BooksApplication.class, args);
+		ApplicationContext context = SpringApplication.run(InsuranceApplication.class, args);
 	}
 }

@@ -11,7 +11,7 @@ public interface TypeClassController {
 
     void deleteTypeClass(long id);
 
-    void updateTypeClass( @RequestBody TypeClass typeClass);
+    TypeClass updateTypeClass( @RequestBody TypeClass typeClass);
 
-    void saveTypeClass(@RequestBody TypeClass typeClass);
+    TypeClass saveTypeClass(@RequestBody TypeClass typeClass);
 }
