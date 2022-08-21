@@ -18,7 +18,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -62,7 +64,14 @@ public class RegionServiceImpl implements RegionService {
     }
 
     public RegionDTO findByPostcode(Long postcode) throws NotFoundException {
-        return modelMapper.map(regionRepository.findByPostCode(postcode).orElseThrow(NotFoundException::new), RegionDTO.class);
+        var foundList = regionRepository.findByPostCode(postcode);
+        var minComparator = new Comparator<Region>() {
+            @Override
+            public int compare(Region r1, Region r2) {
+                return r1.getFactorValue().compareTo(r2.getFactorValue());
+            }
+        };
+        return modelMapper.map(foundList.stream().min(minComparator).orElseThrow(NotFoundException::new), RegionDTO.class);
     }
 
     @Transactional
@@ -78,17 +87,14 @@ public class RegionServiceImpl implements RegionService {
 
     public boolean hasCSVFormat(MultipartFile file) {
 
-        if (!TYPE.equals(file.getContentType())) {
-            return false;
-        }
-        return true;
+        return TYPE.equals(file.getContentType());
     }
 
     public List<Region> csvToList(InputStream is) {
         try (
-                BufferedReader fileReader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+                BufferedReader fileReader = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
                 CSVParser csvParser = new CSVParser(fileReader,
-                        CSVFormat.DEFAULT.withFirstRecordAsHeader().withIgnoreHeaderCase().withTrim());
+                        CSVFormat.DEFAULT.withFirstRecordAsHeader().withIgnoreHeaderCase().withTrim())
         ) {
 
             List<Region> regions = new ArrayList<>();

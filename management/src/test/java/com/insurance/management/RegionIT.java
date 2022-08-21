@@ -1,6 +1,5 @@
 package com.insurance.management;
 
-import com.insurance.management.controllers.NotFoundException;
 import com.insurance.management.controllers.RegionController;
 import com.insurance.management.domain.Region;
 import com.insurance.management.repository.RegionRepository;
@@ -20,9 +19,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static com.insurance.management.TestData.FILE_PATH;
-import static com.insurance.management.TestData.REGION1;
 import static com.insurance.management.TestData.REGIONS_DTO;
 import static com.insurance.management.TestData.REGION_DTO_1;
 import static com.insurance.management.TestData.REGION_FOR_SAVE;
@@ -63,7 +62,7 @@ public class RegionIT {
     @Transactional
     public void testUploadCSV() throws Exception {
         Assertions.assertEquals(HttpStatus.OK, regionController.uploadFile(new MockMultipartFile(
-                 "postcodes.csv", new FileInputStream(new File(FILE_PATH)))).getStatusCode());
+                 "postcodes", "postcodes.csv", "text/csv", new FileInputStream(new File(FILE_PATH)))).getStatusCode());
     }
 
     @Test
@@ -75,8 +74,8 @@ public class RegionIT {
 
     @Test
     public void testDelete() {
-        regionController.deleteRegion(REGION1.getId());
-        Assertions.assertThrows(NotFoundException.class, () -> regionController.findByPostCode(REGION1.getPostCode()));
+        regionController.deleteRegion(REGION_DTO_1.getId());
+        Assertions.assertEquals(Optional.empty(), regionRepository.findById(REGION_DTO_1.getId()));
     }
 
     @Test

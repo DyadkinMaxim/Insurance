@@ -10,5 +10,5 @@ public interface RegionRepository extends JpaRepository<Region, Long> {
 
     List<Region> findAll();
 
-    Optional<Region> findByPostCode(Long postCode);
+    List<Region> findByPostCode(Long postCode);
 }
