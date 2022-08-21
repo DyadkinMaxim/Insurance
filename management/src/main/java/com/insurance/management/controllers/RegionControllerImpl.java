@@ -2,6 +2,7 @@ package com.insurance.management.controllers;
 
 import com.insurance.management.dto.RegionDTO;
 import com.insurance.management.service.RegionService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 @RestController
+@Slf4j
 public class RegionControllerImpl implements RegionController {
 
     private final RegionService regionService;
@@ -45,8 +47,9 @@ public class RegionControllerImpl implements RegionController {
     public RegionDTO saveRegion(
             @RequestBody RegionDTO newRegionDTO
     ) {
-        var actual =  regionService.save(newRegionDTO);
-        return actual;
+        log.info("Saving new region with postcode" + newRegionDTO.getPostCode());
+        return regionService.save(newRegionDTO);
+
     }
 
     @PostMapping(value = "/management/region/newCSV",
@@ -56,7 +59,7 @@ public class RegionControllerImpl implements RegionController {
     public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file) {
         String message = "";
 
-//        if (regionService.hasCSVFormat(file)) {
+        if (regionService.hasCSVFormat(file)) {
             try {
                 regionService.saveFromCSV(file);
 
@@ -66,10 +69,10 @@ public class RegionControllerImpl implements RegionController {
                 message = "Could not upload the file: " + file.getOriginalFilename() + "!";
                 return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message));
             }
-        //}
+        }
 
-//        message = "Please upload a csv file!";
-//        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage(message));
+        message = "Please upload a csv file!";
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage(message));
     }
 
     @ResponseStatus(HttpStatus.OK)
@@ -77,12 +80,14 @@ public class RegionControllerImpl implements RegionController {
     public RegionDTO updateRegion(
             @RequestBody RegionDTO regionDTO
     ) {
+        log.info("Updating region with id" + regionDTO.getId());
         return regionService.update(regionDTO);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("management/region/{id}")
     public void deleteRegion(@PathVariable(value = "id") long id) {
+        log.info("Deleting region with id" + id);
         regionService.deleteById(id);
     }
 
