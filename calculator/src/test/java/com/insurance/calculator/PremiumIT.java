@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import static com.insurance.calculator.TestData.PREMIUMS_DTO;
 import static com.insurance.calculator.TestData.PREMIUM_DTO_1;
+import static com.insurance.calculator.TestData.USER_ENTRY_DTO;
 
 @SpringBootTest
 @Sql({"/data-test.sql"})
@@ -42,7 +43,7 @@ public class PremiumIT {
     @Test
     @Transactional
     public void testSavePremium() {
-        var actual = premiumController.savePremium(TestData.MILEAGE, TestData.TYPE_CLASS_NAME, TestData.POSTCODE);
+        var actual = premiumController.savePremium(USER_ENTRY_DTO);
         Assertions.assertEquals(HttpResponseStatus.OK, actual);
     }
 

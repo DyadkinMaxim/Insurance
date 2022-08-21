@@ -2,6 +2,7 @@ package com.insurance.calculator;
 
 import com.insurance.calculator.domain.Premium;
 import com.insurance.calculator.dto.PremiumDTO;
+import com.insurance.calculator.dto.UserEntryDTO;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -19,11 +20,5 @@ public class TestData {
                     PREMIUM_DTO_3)
     );
 
-
-
-    public static final long TYPE_CLASS_ID = 1L;
-    public static final long MILEAGE = 100L;
-    public static final String TYPE_CLASS_NAME = "Economy";
-    public static final long POSTCODE = 1234;
-
+    public static final UserEntryDTO USER_ENTRY_DTO = new UserEntryDTO(100L, "Business", 1234);
 }

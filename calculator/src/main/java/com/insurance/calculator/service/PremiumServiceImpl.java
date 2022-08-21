@@ -42,7 +42,7 @@ public class PremiumServiceImpl implements PremiumService {
 
         var restTemplate = new RestTemplate();
         var typeClass
-                = restTemplate.getForEntity("http://localhost:8080/management/typeClasses/" + typeClassName, String.class);
+                = restTemplate.getForEntity("http://localhost:8081/management/typeClasses/" + typeClassName, String.class);
 
 
 
