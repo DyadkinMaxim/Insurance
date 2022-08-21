@@ -1,15 +1,15 @@
 package com.insurance.calculator.service;
 
-import com.insurance.calculator.domain.Premium;
+import com.insurance.calculator.dto.PremiumDTO;
 
 import java.util.List;
 
 public interface PremiumService {
-    List<Premium> getAllPremiums();
+    List<PremiumDTO> getAllPremiums();
 
-    Premium getPremiumByID(long id);
+    PremiumDTO getPremiumByID(long id);
 
-    Premium savePremium(Long mileage, String typeClassName, long postCode);
+    PremiumDTO savePremium(Long mileage, String typeClassName, long postCode);
 
     Double getMileageFactor(long mileage);
 }

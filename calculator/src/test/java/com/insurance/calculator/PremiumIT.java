@@ -1,4 +1,4 @@
-package java.com.insurance.calculator;
+package com.insurance.calculator;
 
 import com.insurance.calculator.controllers.PremiumController;
 import com.insurance.calculator.repository.PremiumRepository;
@@ -8,12 +8,14 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.transaction.annotation.Transactional;
 
-import static java.com.insurance.calculator.TestData.POSTCODE;
-import static java.com.insurance.calculator.TestData.TYPE_CLASS_NAME;
+import static com.insurance.calculator.TestData.PREMIUMS_DTO;
+import static com.insurance.calculator.TestData.PREMIUM_DTO_1;
 
 @SpringBootTest
+@Sql({"/data-test.sql"})
 public class PremiumIT {
 
     @Autowired
@@ -26,9 +28,22 @@ public class PremiumIT {
     PremiumController premiumController;
 
     @Test
+    public void getAllPremiums() {
+        var actual = premiumController.getAllPremiums();
+        Assertions.assertEquals(PREMIUMS_DTO, actual);
+    }
+
+    @Test
+    public void getPremiumById() {
+        var actual = premiumController.getPremiumByID(PREMIUM_DTO_1.getId());
+        Assertions.assertEquals(PREMIUM_DTO_1, actual);
+    }
+
+    @Test
     @Transactional
     public void testSavePremium() {
-        var actual = premiumController.savePremium(TestData.MILEAGE, TYPE_CLASS_NAME, POSTCODE);
+        var actual = premiumController.savePremium(TestData.MILEAGE, TestData.TYPE_CLASS_NAME, TestData.POSTCODE);
         Assertions.assertEquals(HttpResponseStatus.OK, actual);
     }
+
 }

@@ -2,37 +2,47 @@ package com.insurance.calculator.service;
 
 
 import com.insurance.calculator.controllers.NotFoundException;
-import com.insurance.calculator.repository.PremiumRepository;
 import com.insurance.calculator.domain.Premium;
+import com.insurance.calculator.dto.PremiumDTO;
+import com.insurance.calculator.repository.PremiumRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PremiumServiceImpl implements PremiumService {
 
     private final PremiumRepository premiumRepository;
-    public PremiumServiceImpl(PremiumRepository premiumRepository) {
+    private final ModelMapper modelMapper;
+
+    public PremiumServiceImpl(PremiumRepository premiumRepository,
+                              ModelMapper modelMapper) {
         this.premiumRepository = premiumRepository;
+        this.modelMapper = modelMapper;
     }
 
-    public List<Premium> getAllPremiums() {
-        return premiumRepository.findAll();
+    public List<PremiumDTO> getAllPremiums() {
+        return premiumRepository.findAll().stream().map(
+                premium -> modelMapper.map(premium, PremiumDTO.class))
+                .collect(Collectors.toList());
     }
 
-    public Premium getPremiumByID(long id) {
-        return premiumRepository.findById(id).orElseThrow(NotFoundException::new);
+    public PremiumDTO getPremiumByID(long id) {
+            return modelMapper.map(premiumRepository.findById(id)
+                    .orElseThrow(NotFoundException::new), PremiumDTO.class);
     }
 
     @Transactional
-    public Premium savePremium(Long mileage, String typeClassName, long postCode) {
+    public PremiumDTO savePremium(Long mileage, String typeClassName, long postCode) {
         //var typeClass = typeClassRepository.findByClassNameContains(typeClassName);
 
         var restTemplate = new RestTemplate();
         var typeClass
-                = restTemplate.getForEntity("http://localhost:8081/management/typeClasses/" + typeClassName, String.class);
+                = restTemplate.getForEntity("http://localhost:8080/management/typeClasses/" + typeClassName, String.class);
 
 
 
@@ -45,7 +55,7 @@ public class PremiumServiceImpl implements PremiumService {
         //newPremium.setTypeClassFactorId(typeClass.getId());
         //newPremium.setPremiumValue(premiumValue);
         var saved =  premiumRepository.save(newPremium);
-        return saved;
+        return modelMapper.map(saved, PremiumDTO.class);
     }
 
     public Double getMileageFactor(long mileage) {
