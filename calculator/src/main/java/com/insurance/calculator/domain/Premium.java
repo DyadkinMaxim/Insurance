@@ -28,9 +28,9 @@ public class Premium {
     @Column(name = "mileage_factor", nullable = false)
     private Double mileageFactor;
 
-    @Column(name = "type_class_factor_id", nullable = false)
-    private long typeClassFactorId;
+    @Column(name = "type_class_factor", nullable = false)
+    private double typeClassFactorId;
 
-    @Column(name = "regional_factor_id", nullable = false)
-    private long regionalFactorId;
+    @Column(name = "regional_factor", nullable = false)
+    private double regionalFactorId;
 }

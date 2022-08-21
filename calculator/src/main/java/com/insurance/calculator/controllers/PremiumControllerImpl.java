@@ -1,5 +1,6 @@
 package com.insurance.calculator.controllers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.insurance.calculator.dto.PremiumDTO;
 import com.insurance.calculator.dto.UserEntryDTO;
 import com.insurance.calculator.service.PremiumService;
@@ -35,8 +36,8 @@ public class PremiumControllerImpl implements PremiumController {
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/management/premium/newPremium")
-    public PremiumDTO savePremium(@RequestBody UserEntryDTO userEntryDTO) {
+    @PostMapping("/management/newPremium")
+    public PremiumDTO savePremium(@RequestBody UserEntryDTO userEntryDTO) throws JsonProcessingException {
         return premiumService.savePremium(userEntryDTO.getMileage(), userEntryDTO.getTypeClassName(), userEntryDTO.getPostcode());
     }
 }

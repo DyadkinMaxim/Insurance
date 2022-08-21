@@ -1,6 +1,5 @@
 package com.insurance.calculator;
 
-import com.insurance.calculator.domain.Premium;
 import com.insurance.calculator.dto.PremiumDTO;
 import com.insurance.calculator.dto.UserEntryDTO;
 

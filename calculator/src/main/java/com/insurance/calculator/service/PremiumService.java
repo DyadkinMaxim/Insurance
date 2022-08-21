@@ -1,5 +1,6 @@
 package com.insurance.calculator.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.insurance.calculator.dto.PremiumDTO;
 
 import java.util.List;
@@ -9,7 +10,7 @@ public interface PremiumService {
 
     PremiumDTO getPremiumByID(long id);
 
-    PremiumDTO savePremium(Long mileage, String typeClassName, long postCode);
+    PremiumDTO savePremium(Long mileage, String typeClassName, long postCode) throws JsonProcessingException;
 
     Double getMileageFactor(long mileage);
 }

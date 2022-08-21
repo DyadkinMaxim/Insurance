@@ -1,9 +1,12 @@
 package com.insurance.calculator.service;
 
-
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.insurance.calculator.controllers.NotFoundException;
 import com.insurance.calculator.domain.Premium;
 import com.insurance.calculator.dto.PremiumDTO;
+import com.insurance.calculator.dto.RegionDTO;
+import com.insurance.calculator.dto.TypeClassDTO;
 import com.insurance.calculator.repository.PremiumRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -32,43 +35,44 @@ public class PremiumServiceImpl implements PremiumService {
     }
 
     public PremiumDTO getPremiumByID(long id) {
-            return modelMapper.map(premiumRepository.findById(id)
-                    .orElseThrow(NotFoundException::new), PremiumDTO.class);
+        return modelMapper.map(premiumRepository.findById(id)
+                .orElseThrow(NotFoundException::new), PremiumDTO.class);
     }
 
     @Transactional
-    public PremiumDTO savePremium(Long mileage, String typeClassName, long postCode) {
-        //var typeClass = typeClassRepository.findByClassNameContains(typeClassName);
+    public PremiumDTO savePremium(Long mileage, String typeClassName, long postCode) throws JsonProcessingException {
 
+        ObjectMapper mapper = new ObjectMapper();
         var restTemplate = new RestTemplate();
-        var typeClass
-                = restTemplate.getForEntity("http://localhost:8081/management/typeClasses/" + typeClassName, String.class);
 
+        var typeClassDTO = mapper.readValue(
+                restTemplate.getForEntity("http://localhost:8081/management/typeClasses/" + typeClassName, String.class)
+                        .getBody(), TypeClassDTO.class);
+        var regionDTO = mapper.readValue(
+                restTemplate.getForEntity("http://localhost:8081/management/regions/" + postCode, String.class)
+                        .getBody(), RegionDTO.class);
 
 
         var milleageFactor = getMileageFactor(mileage);
-       // var premiumValue = milleageFactor * typeClass. * region.getFactorValue();
+        var premiumValue = milleageFactor * typeClassDTO.getFactorValue() * regionDTO.getFactorValue();
 
         var newPremium = new Premium();
         newPremium.setMileageFactor(milleageFactor);
-       // newPremium.setRegionalFactorId(region.getId());
-        //newPremium.setTypeClassFactorId(typeClass.getId());
-        //newPremium.setPremiumValue(premiumValue);
-        var saved =  premiumRepository.save(newPremium);
+        newPremium.setRegionalFactorId(regionDTO.getId());
+        newPremium.setTypeClassFactorId(typeClassDTO.getId());
+        newPremium.setPremiumValue(premiumValue);
+        var saved = premiumRepository.save(newPremium);
         return modelMapper.map(saved, PremiumDTO.class);
     }
 
     public Double getMileageFactor(long mileage) {
-        if(mileage < 5000) {
+        if (mileage < 5000) {
             return 0.5;
-        }
-        else if(mileage < 10000) {
+        } else if (mileage < 10000) {
             return 1.0;
-        }
-        else if(mileage < 20000) {
+        } else if (mileage < 20000) {
             return 1.5;
-        }
-        else {
+        } else {
             return 2.0;
         }
     }

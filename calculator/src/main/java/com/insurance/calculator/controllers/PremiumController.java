@@ -1,6 +1,6 @@
 package com.insurance.calculator.controllers;
 
-import com.insurance.calculator.domain.Premium;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.insurance.calculator.dto.PremiumDTO;
 import com.insurance.calculator.dto.UserEntryDTO;
 
@@ -12,5 +12,5 @@ public interface PremiumController {
 
     PremiumDTO getPremiumByID(long id);
 
-    PremiumDTO savePremium(UserEntryDTO userEntryDTO);
+    PremiumDTO savePremium(UserEntryDTO userEntryDTO) throws JsonProcessingException;
 }
