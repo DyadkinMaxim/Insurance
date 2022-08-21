@@ -47,7 +47,7 @@ public class RegionControllerImpl implements RegionController {
     public RegionDTO saveRegion(
             @RequestBody RegionDTO newRegionDTO
     ) {
-        log.info("Saving new region with postcode" + newRegionDTO.getPostCode());
+        log.debug("Saving new region with postcode {}", newRegionDTO.getPostCode());
         return regionService.save(newRegionDTO);
 
     }
@@ -55,13 +55,13 @@ public class RegionControllerImpl implements RegionController {
     @PostMapping(value = "/management/region/newCSV",
             consumes = {MediaType.MULTIPART_FORM_DATA_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE}
-            )
+    )
     public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file) {
         String message = "";
-
+        log.debug("Uploading CSV with regions");
         if (regionService.hasCSVFormat(file)) {
             try {
-                regionService.saveFromCSV(file);
+                regionService.saveFromCSV(file.getInputStream());
 
                 message = "Uploaded the file successfully: " + file.getOriginalFilename();
                 return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
@@ -80,14 +80,14 @@ public class RegionControllerImpl implements RegionController {
     public RegionDTO updateRegion(
             @RequestBody RegionDTO regionDTO
     ) {
-        log.info("Updating region with id" + regionDTO.getId());
+        log.debug("Updating region with id {}", regionDTO.getId());
         return regionService.update(regionDTO);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("management/region/{id}")
     public void deleteRegion(@PathVariable(value = "id") long id) {
-        log.info("Deleting region with id" + id);
+        log.debug("Deleting region with id {}", id);
         regionService.deleteById(id);
     }
 

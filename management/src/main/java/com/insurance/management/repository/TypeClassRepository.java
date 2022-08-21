@@ -2,7 +2,6 @@ package com.insurance.management.repository;
 
 import com.insurance.management.domain.TypeClass;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;

@@ -14,7 +14,7 @@ public interface RegionService {
 
     RegionDTO findByPostcode(Long postcode);
 
-    void saveFromCSV(MultipartFile file);
+    void saveFromCSV(InputStream inputStream);
 
     RegionDTO update(RegionDTO region);
 

@@ -20,9 +20,9 @@ public class TypeClassServiceImpl implements TypeClassService {
     private final ModelMapper modelMapper;
 
     public TypeClassServiceImpl(TypeClassRepository typeClassRepository,
-                                ModelMapper modelMapper){
+                                ModelMapper modelMapper) {
         this.typeClassRepository = typeClassRepository;
-        this.modelMapper =  modelMapper;
+        this.modelMapper = modelMapper;
     }
 
     @Transactional
@@ -31,7 +31,7 @@ public class TypeClassServiceImpl implements TypeClassService {
         return modelMapper.map(newTypeClass, TypeClassDTO.class);
     }
 
-    public List<TypeClassDTO> findAll(){
+    public List<TypeClassDTO> findAll() {
         return typeClassRepository.findAll().stream().map(
                 typeClass -> modelMapper.map(typeClass, TypeClassDTO.class))
                 .collect(Collectors.toList());
@@ -49,7 +49,7 @@ public class TypeClassServiceImpl implements TypeClassService {
         return modelMapper.map(savedTypeClass, TypeClassDTO.class);
     }
 
-    public void deleteById(long typeClassId){
+    public void deleteById(long typeClassId) {
         typeClassRepository.deleteById(typeClassId);
     }
 }

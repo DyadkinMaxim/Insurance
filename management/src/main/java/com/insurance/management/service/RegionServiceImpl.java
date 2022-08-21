@@ -48,16 +48,12 @@ public class RegionServiceImpl implements RegionService {
     }
 
     @Transactional
-    public void saveFromCSV(MultipartFile file) {
-        try {
-            List<Region> regionsFromCSV = csvToList(file.getInputStream());
-            regionRepository.saveAll(regionsFromCSV);
-        } catch (IOException e) {
-            throw new RuntimeException("fail to store csv data: " + e.getMessage());
-        }
+    public void saveFromCSV(InputStream inputStream) {
+        List<Region> regionsFromCSV = csvToList(inputStream);
+        regionRepository.saveAll(regionsFromCSV);
     }
 
-    public List<RegionDTO> findAll(){
+    public List<RegionDTO> findAll() {
         return regionRepository.findAll().stream().map(
                 region -> modelMapper.map(region, RegionDTO.class))
                 .collect(Collectors.toList());
@@ -108,7 +104,7 @@ public class RegionServiceImpl implements RegionService {
                 region.setCity(csvRecord.get("REGION4"));
                 region.setPostCode(Long.parseLong(csvRecord.get("POSTLEITZAHL").replaceAll("\"", "")));
                 region.setLocation(csvRecord.get("AREA1"));
-                region.setFactorValue(random.nextDouble() * 2);
+                region.setFactorValue(random.nextInt(200) / 100.0);
 
                 regions.add(region);
             }
@@ -119,7 +115,7 @@ public class RegionServiceImpl implements RegionService {
         }
     }
 
-    public void deleteById(long regionId){
+    public void deleteById(long regionId) {
         regionRepository.deleteById(regionId);
     }
 }

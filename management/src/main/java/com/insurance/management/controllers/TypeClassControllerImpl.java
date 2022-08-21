@@ -35,7 +35,7 @@ public class TypeClassControllerImpl implements TypeClassController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/management/typeClasses/{name}")
-    public TypeClassDTO findByClassName(@PathVariable(value = "name") String name){
+    public TypeClassDTO findByClassName(@PathVariable(value = "name") String name) {
         return typeClassService.findByClassName(name);
     }
 
@@ -44,7 +44,7 @@ public class TypeClassControllerImpl implements TypeClassController {
     public TypeClassDTO saveTypeClass(
             @RequestBody TypeClassDTO newTypeClassDTO
     ) {
-        log.info("Saving new typeClass with name" + newTypeClassDTO.getClassName());
+        log.debug("Saving new typeClass with name {}", newTypeClassDTO.getClassName());
         return typeClassService.save(newTypeClassDTO);
     }
 
@@ -53,14 +53,14 @@ public class TypeClassControllerImpl implements TypeClassController {
     public TypeClassDTO updateTypeClass(
             @RequestBody TypeClassDTO typeClassDTO
     ) {
-        log.info("Updating typeClass with name" +typeClassDTO.getClassName());
+        log.debug("Updating typeClass with name {}", typeClassDTO.getClassName());
         return typeClassService.update(typeClassDTO);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("management/typeClass/{id}")
     public void deleteTypeClass(@PathVariable(value = "id") long id) {
-        log.info("Deleting typeClass with id" + id);
+        log.debug("Deleting typeClass with id {}", id);
         typeClassService.deleteById(id);
     }
 
