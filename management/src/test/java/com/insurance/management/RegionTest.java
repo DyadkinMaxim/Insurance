@@ -29,7 +29,7 @@ import static com.insurance.management.TestData.REGION_FOR_UPDATE;
 
 @SpringBootTest
 @Sql({"/data-test.sql"})
-public class RegionIT {
+public class RegionTest {
     @Autowired
     RegionService regionService;
 
@@ -62,7 +62,7 @@ public class RegionIT {
     @Transactional
     public void testUploadCSV() throws Exception {
         Assertions.assertEquals(HttpStatus.OK, regionController.uploadFile(new MockMultipartFile(
-                 "postcodes", "postcodes.csv", "text/csv", new FileInputStream(new File(FILE_PATH)))).getStatusCode());
+                "postcodes", "postcodes.csv", "text/csv", new FileInputStream(new File(FILE_PATH)))).getStatusCode());
     }
 
     @Test

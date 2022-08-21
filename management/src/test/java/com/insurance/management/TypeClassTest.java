@@ -19,7 +19,7 @@ import static com.insurance.management.TestData.TYPECLASS_FOR_UPDATE;
 
 @SpringBootTest
 @Sql({"/data-test.sql"})
-public class TypeClassIT {
+public class TypeClassTest {
 
     @Autowired
     TypeClassService typeClassService;
@@ -32,8 +32,8 @@ public class TypeClassIT {
 
     @Test
     public void testFindAll() {
-       var actual = typeClassController.findAllTypeClasses();
-       Assertions.assertEquals(TYPECLASSES_DTO, actual);
+        var actual = typeClassController.findAllTypeClasses();
+        Assertions.assertEquals(TYPECLASSES_DTO, actual);
     }
 
     @Test
