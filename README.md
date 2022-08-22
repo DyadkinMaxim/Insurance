@@ -19,6 +19,7 @@ Maxim Dyadkin
     - Add all Regions from uploaded CSV
     - Delete Region
   - Audit subsystem. Premium, TypeClass and Region have createdOn and updatedOn fields. It may be useful as this history stores in the database
+  - Security subsystem. TypeClass and Region seem to be sensitive data(also they have modification methods), so API-KEY authentification enabled for Management service
 
 ## Softwares Pre-requisite
   - Java 11
@@ -31,6 +32,7 @@ Maxim Dyadkin
   - Postman(Optional)
 
 ## How to Run the project
+  - Configuring project on local machine(resolving dependencies, choose SDK version)
   - Run Calculator and Management services
     - Top Intellij panel -> Run/Debug Configurations -> run CalculatorApplication and then run ManagementApplication
     - Both services should be running at the same time to achieve requirements.
@@ -38,22 +40,23 @@ Maxim Dyadkin
     - The app is running now :)
    
 ## How to Test the project
-   - There are three Integration tests: RegionIT, TypeClassIT and PremiumIT. Each of them responsible for testing 
+ - There are three Integration tests: RegionIT, TypeClassIT and PremiumIT. Each of them responsible for testing 
    corresponding business functionality. I think creating unit tests is redundant actitity as the project volume is not really big.
-    - Management services should be running at the same time to achieve required data.
-    - Tests may be run in manual way(run inside each test) or via Maven Intellij plugin(choose module -> Lifecycle -> test)
-    - Also manual tests are available - Postman collection @insurance.postman_collection is located in the root of insurance module
+ - Management services should be running at the same time to achieve required data.
+ - Tests may be run in manual way(run inside each test) or via Maven Intellij plugin(choose module -> Lifecycle -> test)
+ - Also manual tests are available: Postman collection insurance.postman_collection_with_security.json is located in the root of insurance module
      so this JSON may be imported in Postman and some operations can be tested manually. 
 
 ## Workflow
- General workflow regarding the task: user can  savePremium method, entry annual mileage, postcode and the name of car typeclass.
+ - General workflow regarding the task: user can  savePremium method, entry annual mileage, postcode and the name of car typeclass.
  Then Calculator will interact with Management and required data about regional and type class factors will be returned to Calculator.
  Finally some inner premium calculations execute and user will get Premium entity as reponse. Premium value there - is result factor of the Insuance.
- Regions may be uploaded from CSV, so regional factor value generates in random way from 0.0 to 2.0 there(According to the task).
- There are groups of records which have the same postcode, so in calculations I decided to select the record with minimal regional factor value
+ - Regions may be uploaded from CSV, so regional factor value generates in random way from 0.0 to 2.0 there(According to the task).
+ - There are groups of records which have the same postcode, so in calculations I decided to select the record with minimal regional factor value
  (Does not violate requirements).
+ - In update methods ID in body and ID in the url should be the same for successful update
  
 ## If it is needed to evaluate records in the database:
  - http://localhost:8080/h2-console
- - print neccessary JDBC URL, empty password
+ - print neccessary JDBC URL(from applications.properties), empty password
  - Welcome to H2 web console!

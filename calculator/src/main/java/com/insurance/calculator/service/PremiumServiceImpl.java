@@ -9,10 +9,15 @@ import com.insurance.calculator.dto.RegionDTO;
 import com.insurance.calculator.dto.TypeClassDTO;
 import com.insurance.calculator.repository.PremiumRepository;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -45,13 +50,18 @@ public class PremiumServiceImpl implements PremiumService {
         ObjectMapper mapper = new ObjectMapper();
         var restTemplate = new RestTemplate();
 
-        var typeClassDTO = mapper.readValue(
-                restTemplate.getForEntity("http://localhost:8081/management/typeClasses/" + typeClassName, String.class)
-                        .getBody(), TypeClassDTO.class);
-        var regionDTO = mapper.readValue(
-                restTemplate.getForEntity("http://localhost:8081/management/regions/" + postCode, String.class)
-                        .getBody(), RegionDTO.class);
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("X-Token", "C3AB8FF13720E8AD9047DD39466B3C8974E592C2FA383D4A3960714CAEF0C4F2");
 
+        final HttpEntity<String> entity = new HttpEntity<>(headers);
+
+        var typeClassBody = restTemplate.exchange("http://localhost:8081/management/typeClasses/" + typeClassName,
+                HttpMethod.GET, entity, String.class).getBody();
+        var typeClassDTO = mapper.readValue(typeClassBody, TypeClassDTO.class);
+
+        var regionBody = restTemplate.exchange("http://localhost:8081/management/regions/" + postCode,
+                HttpMethod.GET, entity, String.class).getBody();
+        var regionDTO = mapper.readValue(regionBody, RegionDTO.class);
 
         var milleageFactor = getMileageFactor(mileage);
         var premiumValue = milleageFactor * typeClassDTO.getFactorValue() * regionDTO.getFactorValue();

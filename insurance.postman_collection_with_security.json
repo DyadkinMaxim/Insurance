@@ -12,6 +12,26 @@
 				{
 					"name": "getRegions",
 					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "X-Token",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "C3AB8FF13720E8AD9047DD39466B3C8974E592C2FA383D4A3960714CAEF0C4F2",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -32,10 +52,30 @@
 				{
 					"name": "getRegionByPostcode",
 					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "X-Token",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "C3AB8FF13720E8AD9047DD39466B3C8974E592C2FA383D4A3960714CAEF0C4F2",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8081/management/regions/111111",
+							"raw": "http://localhost:8081/management/regions/1234",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -44,7 +84,7 @@
 							"path": [
 								"management",
 								"regions",
-								"111111"
+								"1234"
 							]
 						}
 					},
@@ -53,6 +93,26 @@
 				{
 					"name": "uploadCSV",
 					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "X-Token",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "C3AB8FF13720E8AD9047DD39466B3C8974E592C2FA383D4A3960714CAEF0C4F2",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [
 							{
@@ -91,6 +151,26 @@
 				{
 					"name": "addRegion",
 					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "X-Token",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "C3AB8FF13720E8AD9047DD39466B3C8974E592C2FA383D4A3960714CAEF0C4F2",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -121,6 +201,26 @@
 				{
 					"name": "updateRegion",
 					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "X-Token",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "C3AB8FF13720E8AD9047DD39466B3C8974E592C2FA383D4A3960714CAEF0C4F2",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
@@ -151,6 +251,26 @@
 				{
 					"name": "deleteRegion",
 					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "X-Token",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "C3AB8FF13720E8AD9047DD39466B3C8974E592C2FA383D4A3960714CAEF0C4F2",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"body": {
@@ -181,6 +301,26 @@
 				{
 					"name": "getTypeClasses",
 					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "X-Token",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "C3AB8FF13720E8AD9047DD39466B3C8974E592C2FA383D4A3960714CAEF0C4F2",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -201,6 +341,26 @@
 				{
 					"name": "getTypeClassByName",
 					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "X-Token",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "C3AB8FF13720E8AD9047DD39466B3C8974E592C2FA383D4A3960714CAEF0C4F2",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [
 							{
@@ -210,7 +370,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8081/management/typeClasses/{name}",
+							"raw": "http://localhost:8081/management/typeClasses/Business",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -219,7 +379,7 @@
 							"path": [
 								"management",
 								"typeClasses",
-								"{name}"
+								"Business"
 							]
 						}
 					},
@@ -228,6 +388,26 @@
 				{
 					"name": "saveTypeClass",
 					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "X-Token",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "C3AB8FF13720E8AD9047DD39466B3C8974E592C2FA383D4A3960714CAEF0C4F2",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -258,11 +438,31 @@
 				{
 					"name": "updateTypeClass",
 					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "X-Token",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "C3AB8FF13720E8AD9047DD39466B3C8974E592C2FA383D4A3960714CAEF0C4F2",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": " {\r\n        \"id\": 4,\r\n        \"className\": \"NewTypeClass\",\r\n        \"factorValue\": 1.4\r\n    }",
+							"raw": " {\r\n        \"id\": 3,\r\n        \"className\": \"NewTypeClass\",\r\n        \"factorValue\": 1.5\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -288,6 +488,26 @@
 				{
 					"name": "deleteTypeClass",
 					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "X-Token",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "C3AB8FF13720E8AD9047DD39466B3C8974E592C2FA383D4A3960714CAEF0C4F2",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"body": {
@@ -295,7 +515,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:8081/management/typeClass/3",
+							"raw": "http://localhost:8081/management/typeClass/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -304,7 +524,7 @@
 							"path": [
 								"management",
 								"typeClass",
-								"3"
+								"2"
 							]
 						}
 					},
