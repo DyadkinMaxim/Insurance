@@ -1,6 +1,6 @@
-package com.insurance.management.controllers;
+package com.insurance.managementTest.controllers;
 
-import com.insurance.management.dto.RegionDTO;
+import com.insurance.managementTest.dto.RegionDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
 

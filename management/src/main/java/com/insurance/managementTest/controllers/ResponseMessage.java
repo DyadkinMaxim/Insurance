@@ -1,4 +1,4 @@
-package com.insurance.management.controllers;
+package com.insurance.managementTest.controllers;
 
 public class ResponseMessage {
     private String message;

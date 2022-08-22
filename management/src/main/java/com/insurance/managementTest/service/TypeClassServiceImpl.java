@@ -1,9 +1,9 @@
-package com.insurance.management.service;
+package com.insurance.managementTest.service;
 
-import com.insurance.management.controllers.NotFoundException;
-import com.insurance.management.domain.TypeClass;
-import com.insurance.management.dto.TypeClassDTO;
-import com.insurance.management.repository.TypeClassRepository;
+import com.insurance.managementTest.controllers.NotFoundException;
+import com.insurance.managementTest.domain.TypeClass;
+import com.insurance.managementTest.dto.TypeClassDTO;
+import com.insurance.managementTest.repository.TypeClassRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
@@ -38,12 +38,14 @@ public class TypeClassServiceImpl implements TypeClassService {
     }
 
     public TypeClassDTO findByClassName(String name) throws NotFoundException {
-        return modelMapper.map(typeClassRepository.findByClassNameContains(name).orElseThrow(NotFoundException::new), TypeClassDTO.class);
+        return modelMapper.map(typeClassRepository.findByClassNameContains(name).orElseThrow(
+                () -> new NotFoundException("No TypeClasses found with name "+ name)), TypeClassDTO.class);
     }
 
     @Transactional
     public TypeClassDTO update(@NonNull TypeClassDTO typeClassDTO) {
-        var savedTypeClass = typeClassRepository.findById(typeClassDTO.getId()).orElseThrow(NotFoundException::new);
+        var savedTypeClass = typeClassRepository.findById(typeClassDTO.getId()).orElseThrow(
+                () -> new NotFoundException("No TypeClasses found with id "+ typeClassDTO.getId()));
         savedTypeClass.setClassName(typeClassDTO.getClassName());
         savedTypeClass.setFactorValue(typeClassDTO.getFactorValue());
         return modelMapper.map(savedTypeClass, TypeClassDTO.class);

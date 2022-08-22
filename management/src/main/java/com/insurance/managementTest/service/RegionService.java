@@ -1,7 +1,7 @@
-package com.insurance.management.service;
+package com.insurance.managementTest.service;
 
-import com.insurance.management.domain.Region;
-import com.insurance.management.dto.RegionDTO;
+import com.insurance.managementTest.domain.Region;
+import com.insurance.managementTest.dto.RegionDTO;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.InputStream;

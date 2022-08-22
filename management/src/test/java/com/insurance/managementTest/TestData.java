@@ -1,8 +1,8 @@
-package com.insurance.management;
+package com.insurance.managementTest;
 
-import com.insurance.management.domain.TypeClass;
-import com.insurance.management.dto.RegionDTO;
-import com.insurance.management.dto.TypeClassDTO;
+import com.insurance.managementTest.domain.TypeClass;
+import com.insurance.managementTest.dto.RegionDTO;
+import com.insurance.managementTest.dto.TypeClassDTO;
 
 import java.util.Arrays;
 import java.util.Collections;

@@ -1,4 +1,4 @@
-package com.insurance.management.dto;
+package com.insurance.managementTest.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

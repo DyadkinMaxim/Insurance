@@ -1,6 +1,6 @@
-package com.insurance.management.controllers;
+package com.insurance.managementTest.controllers;
 
-import com.insurance.management.dto.TypeClassDTO;
+import com.insurance.managementTest.dto.TypeClassDTO;
 
 import java.util.List;
 

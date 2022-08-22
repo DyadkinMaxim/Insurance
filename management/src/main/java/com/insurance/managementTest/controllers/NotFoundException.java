@@ -1,4 +1,4 @@
-package com.insurance.calculator.controllers;
+package com.insurance.managementTest.controllers;
 
 public class NotFoundException extends RuntimeException {
     public NotFoundException(String message) {

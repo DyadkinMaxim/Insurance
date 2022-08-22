@@ -1,7 +1,7 @@
-package com.insurance.management.controllers;
+package com.insurance.managementTest.controllers;
 
-import com.insurance.management.dto.RegionDTO;
-import com.insurance.management.service.RegionService;
+import com.insurance.managementTest.dto.RegionDTO;
+import com.insurance.managementTest.service.RegionService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -94,6 +94,11 @@ public class RegionControllerImpl implements RegionController {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<?> handleException(Throwable ex) {
         // For any exceptions
-        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity<?> notFoundException(Throwable ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 }

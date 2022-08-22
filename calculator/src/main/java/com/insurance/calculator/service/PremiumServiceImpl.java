@@ -36,7 +36,7 @@ public class PremiumServiceImpl implements PremiumService {
 
     public PremiumDTO getPremiumByID(long id) {
         return modelMapper.map(premiumRepository.findById(id)
-                .orElseThrow(NotFoundException::new), PremiumDTO.class);
+                .orElseThrow(() -> new NotFoundException("No premiums found with id " + id)), PremiumDTO.class);
     }
 
     @Transactional

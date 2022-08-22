@@ -1,7 +1,7 @@
-package com.insurance.management.controllers;
+package com.insurance.managementTest.controllers;
 
-import com.insurance.management.dto.TypeClassDTO;
-import com.insurance.management.service.TypeClassService;
+import com.insurance.managementTest.dto.TypeClassDTO;
+import com.insurance.managementTest.service.TypeClassService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -67,6 +67,11 @@ public class TypeClassControllerImpl implements TypeClassController {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<?> handleException(Throwable ex) {
         // For any exceptions
-        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity<?> notFoundException(Throwable ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 }

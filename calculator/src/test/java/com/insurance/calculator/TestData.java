@@ -20,4 +20,5 @@ public class TestData {
     );
 
     public static final UserEntryDTO USER_ENTRY_DTO = new UserEntryDTO(100L, "Business", 1234);
+    public static final PremiumDTO SAVED_PREMIUM_DTO = new PremiumDTO(4,0.5, 0.5, 1, 1);
 }

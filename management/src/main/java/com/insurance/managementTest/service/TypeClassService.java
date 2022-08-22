@@ -1,7 +1,7 @@
-package com.insurance.management.service;
+package com.insurance.managementTest.service;
 
 
-import com.insurance.management.dto.TypeClassDTO;
+import com.insurance.managementTest.dto.TypeClassDTO;
 
 import java.util.List;
 

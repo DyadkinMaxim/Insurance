@@ -1,6 +1,6 @@
-package com.insurance.management.repository;
+package com.insurance.managementTest.repository;
 
-import com.insurance.management.domain.Region;
+import com.insurance.managementTest.domain.Region;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

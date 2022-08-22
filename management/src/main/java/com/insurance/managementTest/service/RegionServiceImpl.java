@@ -1,10 +1,10 @@
-package com.insurance.management.service;
+package com.insurance.managementTest.service;
 
 
-import com.insurance.management.controllers.NotFoundException;
-import com.insurance.management.domain.Region;
-import com.insurance.management.dto.RegionDTO;
-import com.insurance.management.repository.RegionRepository;
+import com.insurance.managementTest.controllers.NotFoundException;
+import com.insurance.managementTest.domain.Region;
+import com.insurance.managementTest.dto.RegionDTO;
+import com.insurance.managementTest.repository.RegionRepository;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
@@ -61,18 +61,22 @@ public class RegionServiceImpl implements RegionService {
 
     public RegionDTO findByPostcode(Long postcode) throws NotFoundException {
         var foundList = regionRepository.findByPostCode(postcode);
+        if(foundList.isEmpty()) {
+            throw new NotFoundException("No regions foudn with postcode " + postcode);
+        }
         var minComparator = new Comparator<Region>() {
             @Override
             public int compare(Region r1, Region r2) {
                 return r1.getFactorValue().compareTo(r2.getFactorValue());
             }
         };
-        return modelMapper.map(foundList.stream().min(minComparator).orElseThrow(NotFoundException::new), RegionDTO.class);
+        return modelMapper.map(foundList.stream().min(minComparator), RegionDTO.class);
     }
 
     @Transactional
     public RegionDTO update(@NonNull RegionDTO region) {
-        Region savedRegion = regionRepository.findById(region.getId()).orElseThrow(NotFoundException::new);
+        Region savedRegion = regionRepository.findById(region.getId()).orElseThrow(
+                () -> new NotFoundException("No premiums found with id " + region.getId()));
         savedRegion.setFederalState(region.getFederalState());
         savedRegion.setCounty(region.getCounty());
         savedRegion.setCity(region.getCity());

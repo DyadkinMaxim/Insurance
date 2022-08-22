@@ -1,9 +1,9 @@
-package com.insurance.management;
+package com.insurance.managementTest;
 
-import com.insurance.management.controllers.NotFoundException;
-import com.insurance.management.controllers.TypeClassController;
-import com.insurance.management.repository.TypeClassRepository;
-import com.insurance.management.service.TypeClassService;
+import com.insurance.managementTest.controllers.NotFoundException;
+import com.insurance.managementTest.controllers.TypeClassController;
+import com.insurance.managementTest.repository.TypeClassRepository;
+import com.insurance.managementTest.service.TypeClassService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,15 +11,15 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.transaction.annotation.Transactional;
 
-import static com.insurance.management.TestData.TYPECLASS1;
-import static com.insurance.management.TestData.TYPECLASSES_DTO;
-import static com.insurance.management.TestData.TYPECLASS_DTO_1;
-import static com.insurance.management.TestData.TYPECLASS_FOR_SAVE;
-import static com.insurance.management.TestData.TYPECLASS_FOR_UPDATE;
+import static com.insurance.managementTest.TestData.TYPECLASS1;
+import static com.insurance.managementTest.TestData.TYPECLASSES_DTO;
+import static com.insurance.managementTest.TestData.TYPECLASS_DTO_1;
+import static com.insurance.managementTest.TestData.TYPECLASS_FOR_SAVE;
+import static com.insurance.managementTest.TestData.TYPECLASS_FOR_UPDATE;
 
 @SpringBootTest
 @Sql({"/data-test.sql"})
-public class TypeClassTest {
+public class TypeClassIT {
 
     @Autowired
     TypeClassService typeClassService;

@@ -1,9 +1,9 @@
-package com.insurance.management;
+package com.insurance.managementTest;
 
-import com.insurance.management.controllers.RegionController;
-import com.insurance.management.domain.Region;
-import com.insurance.management.repository.RegionRepository;
-import com.insurance.management.service.RegionService;
+import com.insurance.managementTest.controllers.RegionController;
+import com.insurance.managementTest.domain.Region;
+import com.insurance.managementTest.repository.RegionRepository;
+import com.insurance.managementTest.service.RegionService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,15 +21,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static com.insurance.management.TestData.FILE_PATH;
-import static com.insurance.management.TestData.REGIONS_DTO;
-import static com.insurance.management.TestData.REGION_DTO_1;
-import static com.insurance.management.TestData.REGION_FOR_SAVE;
-import static com.insurance.management.TestData.REGION_FOR_UPDATE;
+import static com.insurance.managementTest.TestData.FILE_PATH;
+import static com.insurance.managementTest.TestData.REGIONS_DTO;
+import static com.insurance.managementTest.TestData.REGION_DTO_1;
+import static com.insurance.managementTest.TestData.REGION_FOR_SAVE;
+import static com.insurance.managementTest.TestData.REGION_FOR_UPDATE;
 
 @SpringBootTest
 @Sql({"/data-test.sql"})
-public class RegionTest {
+public class RegionIT {
     @Autowired
     RegionService regionService;
 
@@ -62,7 +62,7 @@ public class RegionTest {
     @Transactional
     public void testUploadCSV() throws Exception {
         Assertions.assertEquals(HttpStatus.OK, regionController.uploadFile(new MockMultipartFile(
-                "postcodes", "postcodes.csv", "text/csv", new FileInputStream(new File(FILE_PATH)))).getStatusCode());
+                "postcodes", "resources/postcodes.csv", "text/csv", new FileInputStream(new File(FILE_PATH)))).getStatusCode());
     }
 
     @Test
@@ -84,7 +84,7 @@ public class RegionTest {
         List<Region> regions = new ArrayList<>();
         try {
             MultipartFile file = new MockMultipartFile(
-                    "postcodes.csv", new FileInputStream(new File(FILE_PATH)));
+                    "resources/postcodes.csv", new FileInputStream(new File(FILE_PATH)));
             regions = regionService.csvToList(file.getInputStream());
         } catch (IOException e) {
             e.printStackTrace();
