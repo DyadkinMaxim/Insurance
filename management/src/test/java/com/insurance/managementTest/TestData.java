@@ -1,6 +1,5 @@
 package com.insurance.managementTest;
 
-import com.insurance.managementTest.domain.TypeClass;
 import com.insurance.managementTest.dto.RegionDTO;
 import com.insurance.managementTest.dto.TypeClassDTO;
 
@@ -10,7 +9,6 @@ import java.util.List;
 
 public class TestData {
 
-    public static final TypeClass TYPECLASS1 = new TypeClass(1, "Business", 1.0);
     public static final TypeClassDTO TYPECLASS_DTO_1 = new TypeClassDTO(1, "Business", 1.0);
     public static final TypeClassDTO TYPECLASS_DTO_2 = new TypeClassDTO(2, "Truck", 1.5);
     public static final TypeClassDTO TYPECLASS_DTO_3 = new TypeClassDTO(3, "Comfort", 2.5);

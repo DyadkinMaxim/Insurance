@@ -8,5 +8,7 @@ create table if not exists premium
     premium_value     DOUBLE,
     mileage_factor    DOUBLE,
     type_class_factor DOUBLE,
-    regional_factor   DOUBLE
+    regional_factor   DOUBLE,
+    created_on        TIMESTAMP,
+    updated_on        TIMESTAMP
 );

@@ -11,7 +11,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.transaction.annotation.Transactional;
 
-import static com.insurance.managementTest.TestData.TYPECLASS1;
 import static com.insurance.managementTest.TestData.TYPECLASSES_DTO;
 import static com.insurance.managementTest.TestData.TYPECLASS_DTO_1;
 import static com.insurance.managementTest.TestData.TYPECLASS_FOR_SAVE;
@@ -58,7 +57,7 @@ public class TypeClassIT {
 
     @Test
     public void testDelete() {
-        typeClassController.deleteTypeClass(TYPECLASS1.getId());
-        Assertions.assertThrows(NotFoundException.class, () -> typeClassController.findByClassName(TYPECLASS1.getClassName()));
+        typeClassController.deleteTypeClass(TYPECLASS_DTO_1.getId());
+        Assertions.assertThrows(NotFoundException.class, () -> typeClassController.findByClassName(TYPECLASS_DTO_1.getClassName()));
     }
 }

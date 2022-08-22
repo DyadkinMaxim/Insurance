@@ -18,6 +18,7 @@ Maxim Dyadkin
     - Manually add Region
     - Add all Regions from uploaded CSV
     - Delete Region
+  - Audit subsystem. Premium, TypeClass and Region have createdOn and updatedOn fields. It may be useful as this history stores in the database
 
 ## Softwares Pre-requisite
   - Java 11
@@ -51,4 +52,8 @@ Maxim Dyadkin
  Regions may be uploaded from CSV, so regional factor value generates in random way from 0.0 to 2.0 there(According to the task).
  There are groups of records which have the same postcode, so in calculations I decided to select the record with minimal regional factor value
  (Does not violate requirements).
-  
+ 
+## If it is needed to evaluate records in the database:
+ - http://localhost:8080/h2-console
+ - print neccessary JDBC URL, empty password
+ - Welcome to H2 web console!

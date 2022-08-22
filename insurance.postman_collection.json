@@ -10,6 +10,47 @@
 			"name": "region",
 			"item": [
 				{
+					"name": "getRegions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/management/regions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"management",
+								"regions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getRegionByPostcode",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/management/regions/111111",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"management",
+								"regions",
+								"111111"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "uploadCSV",
 					"request": {
 						"method": "POST",
@@ -78,12 +119,21 @@
 					"response": []
 				},
 				{
-					"name": "getRegions",
+					"name": "updateRegion",
 					"request": {
-						"method": "GET",
+						"method": "PUT",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"id\": 1,\r\n        \"federalState\": \"UPDATED\",\r\n        \"county\": \"County1\",\r\n        \"city\": \"City1\",\r\n        \"postCode\": 1234,\r\n        \"location\": \"Location1\",\r\n        \"factorValue\": 1.0\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://localhost:8081/management/regions",
+							"raw": "http://localhost:8081/management/region/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -91,7 +141,33 @@
 							"port": "8081",
 							"path": [
 								"management",
-								"regions"
+								"region",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteRegion",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8081/management/region/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"management",
+								"region",
+								"3"
 							]
 						}
 					},
@@ -245,14 +321,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/management/premiums",
+							"raw": "http://localhost:8080/calculator/premiums",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"management",
+								"calculator",
 								"premiums"
 							]
 						}
@@ -274,16 +350,36 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/management/premium/newPremium",
+							"raw": "http://localhost:8080/calculator/newPremium",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"management",
-								"premium",
+								"calculator",
 								"newPremium"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getPremiumById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/calculator/premiums/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"calculator",
+								"premiums",
+								"2"
 							]
 						}
 					},
